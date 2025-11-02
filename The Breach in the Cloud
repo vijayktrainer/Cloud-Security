@@ -1,0 +1,35 @@
+    4  aws --version
+    5  aws configure
+    7  aws sts get-caller-identity 
+    8  ls
+    9  mkdir pwnedlab
+   10  cd pwnedlab
+   12  mkdir breach-in-the-cloud
+   13  cd breach-in-the-cloud
+   14  ls
+   15  mv /home/pwnedlabs/Downloads/INCIDENT-3252.zip .
+   24  unzip INCIDENT-3252.zip -d INCIDENT-3252
+   25  cd INCIDENT-3252
+   26  ls
+   28  sudo apt install jq
+   29  for file in *.json; do jq . "$file" > "$file.tmp" && mv "$file.tmp" "$file"; done
+   31  gedit 107513503799_CloudTrail_us-east-1_20230826T2035Z_PjmwM7E4hZ6897Aq.json
+   33  grep -r userName | sort -u
+   34  grep -h -A 10 temp-user 107513503799_CloudTrail_us-east-1_20230826T2035Z_PjmwM7E4hZ6897Aq.json
+   36  aws sts get-caller-identity 
+   38  curl ipinfo.io/84.32.71.19
+   39  ls
+   42  gedit 107513503799_CloudTrail_us-east-1_20230826T2040Z_UkDeakooXR09uCBm.json
+   44  aws sts get-caller-identity 
+   45  aws iam list-user-policies --user-name temp-user
+   47  aws iam get-user-policy --user-name temp-user --policy-name test-temp-user
+   49  aws sts assume-role --role-arn arn:aws:iam::107513503799:role/AdminRole --role-session-name temp-session
+   50  aws configure
+   52  aws configure set aws_session_token "FwoGZXIvYXdzEIn//////////wEaDMY78ntgHdLmz/fIcSKwAVwYrn49TmKmwR6CaO0QGAl77wY7Gjf3q3K+fxsJdXgmOPjcKWXlGwMhvS0DQX4HfOJ8NkFzCAePobqPhn8w2rddj8+Lwk8SF6XbuY0No4C+ZLeFEl3TJdXUBQ6u4zoshTQLhynfOXm8XiJlqmOQzTXEpFjMAZFnpkS7FG38c7wRRzP+XoRDubWoyrD839LYBV294V2/BiVj0Ffcg+N5x0B9CZ6wzCj0BVuej76jyi10KKuUnMgGMi0hLotoXaJf43k0mg1uFSxDiIUdhALz77NPmunExaVfyOq6y3P4K68XZAWu0YA="
+   53  aws sts get-caller-identity 
+   54  aws s3 ls s3://emergency-data-recovery
+   55  aws s3 cp s3://emergency-data-recovery/emergency.txt .
+   56  aws s3 cp s3://emergency-data-recovery/message.txt .
+   57  ls
+   58  cat message.txt
+   59  cat emergency.txt
