@@ -1,0 +1,11 @@
+** incomplete **
+
+nmap -Pn 54.204.171.32
+http is open 
+Access
+http://54.204.171.32/
+Check page source for getting the bucket information 
+mega-big-tech
+
+aws configure 
+aws sts get-caller-identity 
